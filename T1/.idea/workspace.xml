@@ -14,8 +14,8 @@
       <file leaf-file-name="Lua.g4" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/t1/Lua.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="75" column="27" lean-forward="true" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+            <state relative-caret-position="198">
+              <caret line="126" selection-start-line="126" selection-end-line="126" />
               <folding>
                 <element signature="e#115#189#1" expanded="true" />
               </folding>
@@ -187,12 +187,12 @@
       <option name="presentableId" value="Default" />
       <updated>1527249250633</updated>
       <workItem from="1527249252078" duration="1753000" />
-      <workItem from="1527531600898" duration="9785000" />
+      <workItem from="1527531600898" duration="10444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11538000" />
+    <option name="totallyTimeSpent" value="12197000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -271,8 +271,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/t1/Lua.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="75" column="27" lean-forward="true" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+        <state relative-caret-position="198">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
           <folding>
             <element signature="e#115#189#1" expanded="true" />
           </folding>

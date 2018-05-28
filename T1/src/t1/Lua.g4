@@ -125,6 +125,7 @@ nomeFuncao: IDENTIFICADOR ('.' IDENTIFICADOR)* (':' IDENTIFICADOR)?;
 /* Expressões definidas pela linguagem. "prefixoExpressao" previne que haja recursividade na regra */
 
 
+
 expressao: NIL | FALSE | TRUE | Digito | CADEIA | '...' | definicaoFuncao
 		   prefixoExpressao | construtorTabela | expressao opbinario expressao  |
 		   opunario expressao;
