@@ -105,7 +105,7 @@ comando: ';' |
 		IF expressao THEN bloco (ELSEIF expressao THEN bloco)* (ELSE bloco)? END |
 		FOR IDENTIFICADOR ATR expressao ',' expressao (',' expressao)* DO bloco END |
 		FOR listaIdentificadores IN listaExpressoes DO bloco END |
-		FUNCTION nomeFuncao corpoFuncao { TabelaDeSimbolos.adicionarSimbolo($nomeFuncao.text,Tipo.FUNCAO); } |
+		FUNCTION nomeFuncao corpoFuncao { TabelaDeSimbolos.adicionarSimbolo($nomeFuncao.text,Tipo.FUNCAO); }  |
 		LOCAL listaIdentificadores (ATR listaExpressoes)?;
 
 
@@ -126,23 +126,48 @@ nomeFuncao: IDENTIFICADOR ('.' IDENTIFICADOR)* (':' IDENTIFICADOR)?;
 
 
 
-expressao: NIL | FALSE | TRUE | Digito | CADEIA | '...' | definicaoFuncao
+expressao: IDENTIFICADOR | NIL | FALSE | TRUE | DECIMAL | CADEIA | '...' | definicaoFuncao
 		   prefixoExpressao | construtorTabela | expressao opbinario expressao  |
 		   opunario expressao;
 
-prefixoExpressao: var | chamadaFuncao | '(' expressao ')';
+//prefixoExpressao: var | chamadaFuncao | '(' expressao ')';
+
+prefixoExpressao : IDENTIFICADOR prefixoExpressao1 | IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.VARIAVEL);} |
+				   chamadaFuncao prefixoExpressao1 | chamadaFuncao | prefixoExpressao1
+				   '(' expressao ')' prefixoExpressao1 | '(' expressao ')';
+
+
+prefixoExpressao1 :	'[' expressao ']' prefixoExpressao1 | '[' expressao ']' |
+					'.' IDENTIFICADOR prefixoExpressao1 | '.' IDENTIFICADOR;
+
 
 
 /* Maneira como as funções se comportam na linguagem, onde há o nome da função e seus argumentos.
  * Também é definido o corpo da função e seus parâmetros */
 
-chamadaFuncao: var argumento | var ':' IDENTIFICADOR argumento;
+//chamadaFuncao: var argumento | var ':' IDENTIFICADOR argumento;
+
+
+chamadaFuncao : IDENTIFICADOR prefixoExpressao1 argumento chamadaFuncao1 |
+                  IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento | IDENTIFICADOR prefixoExpressao1 argumento | IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento chamadaFuncao1 |
+                  '(' expressao ')'  prefixoExpressao1 argumento chamadaFuncao1 |
+                  '(' expressao ')'  argumento | '(' expressao ')'  prefixoExpressao1 argumento | '(' expressao ')'  argumento chamadaFuncao1 |
+                  IDENTIFICADOR prefixoExpressao1 ':' IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento chamadaFuncao1 |
+                  IDENTIFICADOR ':' IDENTIFICADOR argumento | IDENTIFICADOR prefixoExpressao1 ':' IDENTIFICADOR argumento | IDENTIFICADOR ':' IDENTIFICADOR argumento chamadaFuncao1 |
+                  '(' expressao ')' prefixoExpressao1 ':' IDENTIFICADOR argumento chamadaFuncao1 |
+                  '(' expressao ')'  ':' IDENTIFICADOR argumento | '(' expressao ')' prefixoExpressao1 ':' IDENTIFICADOR argumento | '(' expressao ')' ':' IDENTIFICADOR argumento chamadaFuncao1;
+
+chamadaFuncao1 : prefixoExpressao1 argumento chamadaFuncao1 |
+                      argumento | prefixoExpressao1 argumento | argumento chamadaFuncao1 |
+                      prefixoExpressao1':' IDENTIFICADOR argumento chamadaFuncao1 |
+                      ':' IDENTIFICADOR argumento | prefixoExpressao1':' IDENTIFICADOR argumento | ':' IDENTIFICADOR argumento chamadaFuncao1;
+
 
 argumento: '(' (listaExpressoes)? ')' | construtorTabela | CADEIA;
 
 definicaoFuncao: FUNCTION corpoFuncao;
 
-corpoFuncao: '(' (listaParametros)? ')' bloco END;
+corpoFuncao: IDENTIFICADOR '(' (listaParametros)? ')' bloco END;
 
 listaParametros: listaIdentificadores (',' '...')? | '...';
 

@@ -183,6 +183,18 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -190,6 +202,18 @@ public class LuaBaseListener implements LuaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

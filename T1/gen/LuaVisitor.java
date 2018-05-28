@@ -94,11 +94,23 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrefixoExpressao(LuaParser.PrefixoExpressaoContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LuaParser#prefixoExpressao1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link LuaParser#chamadaFuncao}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#chamadaFuncao1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link LuaParser#argumento}.
 	 * @param ctx the parse tree

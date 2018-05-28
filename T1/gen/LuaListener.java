@@ -147,6 +147,16 @@ public interface LuaListener extends ParseTreeListener {
 	 */
 	void exitPrefixoExpressao(LuaParser.PrefixoExpressaoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LuaParser#prefixoExpressao1}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link LuaParser#prefixoExpressao1}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link LuaParser#chamadaFuncao}.
 	 * @param ctx the parse tree
 	 */
@@ -156,6 +166,16 @@ public interface LuaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LuaParser#chamadaFuncao1}.
+	 * @param ctx the parse tree
+	 */
+	void enterChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link LuaParser#chamadaFuncao1}.
+	 * @param ctx the parse tree
+	 */
+	void exitChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link LuaParser#argumento}.
 	 * @param ctx the parse tree

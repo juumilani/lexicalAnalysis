@@ -14,8 +14,8 @@
       <file leaf-file-name="Lua.g4" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/t1/Lua.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="-1186">
+              <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
               <folding>
                 <element signature="e#115#189#1" expanded="true" />
               </folding>
@@ -87,6 +87,32 @@
             <path>
               <item name="T1" type="b2602c69:ProjectViewProjectNode" />
               <item name="T1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="T1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="T1" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="T1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="T1" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="T1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="T1" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="t1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="T1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="T1" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="t1" type="462c0819:PsiDirectoryNode" />
+              <item name="exemplos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="T1" type="b2602c69:ProjectViewProjectNode" />
@@ -187,16 +213,15 @@
       <option name="presentableId" value="Default" />
       <updated>1527249250633</updated>
       <workItem from="1527249252078" duration="1753000" />
-      <workItem from="1527531600898" duration="10444000" />
+      <workItem from="1527531600898" duration="16805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12197000" />
+    <option name="totallyTimeSpent" value="18558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -214,7 +239,7 @@
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18816389" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="ANTLR Preview" sideWeight="0.49924126" weight="0.635" />
+      <window_info active="true" anchor="bottom" id="ANTLR Preview" sideWeight="0.49924126" visible="true" weight="0.14333333" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -269,10 +294,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/classes/t1/EntradaTabelaDeSimbolos.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#1258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/classes/t1/exemplos/lua2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/t1/Lua.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="-1186">
+          <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
           <folding>
             <element signature="e#115#189#1" expanded="true" />
           </folding>
