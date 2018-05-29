@@ -15,18 +15,6 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterListaExpressoes(LuaParser.ListaExpressoesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitListaExpressoes(LuaParser.ListaExpressoesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterPrograma(LuaParser.ProgramaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -75,42 +63,6 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar(LuaParser.VarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVar(LuaParser.VarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVarSufix(LuaParser.VarSufixContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVarSufix(LuaParser.VarSufixContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPrefixoVar(LuaParser.PrefixoVarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrefixoVar(LuaParser.PrefixoVarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterComando(LuaParser.ComandoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -135,13 +87,49 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterListaIdentificadores(LuaParser.ListaIdentificadoresContext ctx) { }
+	@Override public void enterNomeId(LuaParser.NomeIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitListaIdentificadores(LuaParser.ListaIdentificadoresContext ctx) { }
+	@Override public void exitNomeId(LuaParser.NomeIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListaVariaveis(LuaParser.ListaVariaveisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListaVariaveis(LuaParser.ListaVariaveisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNome(LuaParser.NomeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNome(LuaParser.NomeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNomeAux(LuaParser.NomeAuxContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNomeAux(LuaParser.NomeAuxContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -159,6 +147,66 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVar(LuaParser.VarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVar(LuaParser.VarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarSufixo(LuaParser.VarSufixoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarSufixo(LuaParser.VarSufixoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListaIds(LuaParser.ListaIdsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListaIds(LuaParser.ListaIdsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListaExpressoes(LuaParser.ListaExpressoesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListaExpressoes(LuaParser.ListaExpressoesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpUnario(LuaParser.OpUnarioContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpUnario(LuaParser.OpUnarioContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpressao(LuaParser.ExpressaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -166,6 +214,114 @@ public class LuaBaseListener implements LuaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpressao(LuaParser.ExpressaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressao1(LuaParser.Expressao1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressao1(LuaParser.Expressao1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressao2(LuaParser.Expressao2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressao2(LuaParser.Expressao2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressao3(LuaParser.Expressao3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressao3(LuaParser.Expressao3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressao4(LuaParser.Expressao4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressao4(LuaParser.Expressao4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpBin1(LuaParser.OpBin1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpBin1(LuaParser.OpBin1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpBin2(LuaParser.OpBin2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpBin2(LuaParser.OpBin2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpBin3(LuaParser.OpBin3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpBin3(LuaParser.OpBin3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpBin4(LuaParser.OpBin4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpBin4(LuaParser.OpBin4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFuncaoComposta(LuaParser.FuncaoCompostaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFuncaoComposta(LuaParser.FuncaoCompostaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -183,18 +339,6 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -207,25 +351,25 @@ public class LuaBaseListener implements LuaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx) { }
+	@Override public void enterFuncaoAux(LuaParser.FuncaoAuxContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx) { }
+	@Override public void exitFuncaoAux(LuaParser.FuncaoAuxContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgumento(LuaParser.ArgumentoContext ctx) { }
+	@Override public void enterArgumentos(LuaParser.ArgumentosContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArgumento(LuaParser.ArgumentoContext ctx) { }
+	@Override public void exitArgumentos(LuaParser.ArgumentosContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -310,30 +454,6 @@ public class LuaBaseListener implements LuaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSeparaCampos(LuaParser.SeparaCamposContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOpbinario(LuaParser.OpbinarioContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOpbinario(LuaParser.OpbinarioContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOpunario(LuaParser.OpunarioContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOpunario(LuaParser.OpunarioContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

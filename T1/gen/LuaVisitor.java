@@ -10,12 +10,6 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#listaExpressoes}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitListaExpressoes(LuaParser.ListaExpressoesContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link LuaParser#programa}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -40,24 +34,6 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTrecho(LuaParser.TrechoContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#var}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVar(LuaParser.VarContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LuaParser#varSufix}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarSufix(LuaParser.VarSufixContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LuaParser#prefixoVar}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrefixoVar(LuaParser.PrefixoVarContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link LuaParser#comando}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -70,11 +46,29 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRotulo(LuaParser.RotuloContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#listaIdentificadores}.
+	 * Visit a parse tree produced by {@link LuaParser#nomeId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitListaIdentificadores(LuaParser.ListaIdentificadoresContext ctx);
+	T visitNomeId(LuaParser.NomeIdContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#listaVariaveis}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListaVariaveis(LuaParser.ListaVariaveisContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#nome}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNome(LuaParser.NomeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#nomeAux}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNomeAux(LuaParser.NomeAuxContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LuaParser#nomeFuncao}.
 	 * @param ctx the parse tree
@@ -82,11 +76,95 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNomeFuncao(LuaParser.NomeFuncaoContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LuaParser#var}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar(LuaParser.VarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#varSufixo}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarSufixo(LuaParser.VarSufixoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#listaIds}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListaIds(LuaParser.ListaIdsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#listaExpressoes}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListaExpressoes(LuaParser.ListaExpressoesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#opUnario}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpUnario(LuaParser.OpUnarioContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LuaParser#expressao}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpressao(LuaParser.ExpressaoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#expressao1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressao1(LuaParser.Expressao1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#expressao2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressao2(LuaParser.Expressao2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#expressao3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressao3(LuaParser.Expressao3Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#expressao4}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressao4(LuaParser.Expressao4Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#opBin1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpBin1(LuaParser.OpBin1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#opBin2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpBin2(LuaParser.OpBin2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#opBin3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpBin3(LuaParser.OpBin3Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#opBin4}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpBin4(LuaParser.OpBin4Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link LuaParser#funcaoComposta}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncaoComposta(LuaParser.FuncaoCompostaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LuaParser#prefixoExpressao}.
 	 * @param ctx the parse tree
@@ -94,29 +172,23 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrefixoExpressao(LuaParser.PrefixoExpressaoContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#prefixoExpressao1}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrefixoExpressao1(LuaParser.PrefixoExpressao1Context ctx);
-	/**
 	 * Visit a parse tree produced by {@link LuaParser#chamadaFuncao}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitChamadaFuncao(LuaParser.ChamadaFuncaoContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#chamadaFuncao1}.
+	 * Visit a parse tree produced by {@link LuaParser#funcaoAux}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitChamadaFuncao1(LuaParser.ChamadaFuncao1Context ctx);
+	T visitFuncaoAux(LuaParser.FuncaoAuxContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LuaParser#argumento}.
+	 * Visit a parse tree produced by {@link LuaParser#argumentos}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArgumento(LuaParser.ArgumentoContext ctx);
+	T visitArgumentos(LuaParser.ArgumentosContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LuaParser#definicaoFuncao}.
 	 * @param ctx the parse tree
@@ -159,16 +231,4 @@ public interface LuaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSeparaCampos(LuaParser.SeparaCamposContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LuaParser#opbinario}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOpbinario(LuaParser.OpbinarioContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LuaParser#opunario}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOpunario(LuaParser.OpunarioContext ctx);
 }

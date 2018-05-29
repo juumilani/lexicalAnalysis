@@ -36,27 +36,29 @@ TRUE: 'true';
 UNTIL: 'until';
 WHILE: 'while';
 
+SEPARACAMPOS: ',' | ';';
+
 fragment Letra : ('a'..'z'|'A'..'Z');
 fragment Digito : ('0'..'9');
 
 /* Identificadores */
 
-IDENTIFICADOR : (Letra|'_')(Letra|Digito|'_')*;
+ID: (Letra|'_')(Letra|Digito|'_')*;
 
-/* Cadeias de caracteres (apenas as versões curtas, sem sequência de escape, 
+/* Cadeias de caracteres (apenas as versões curtas, sem sequência de escape,
  * quebras de linha não permitidas) */
 
 CADEIA : '"' (~('\\'|'\''|'"') )* '"'|'\'' (~('\\'|'\''|'"') )* '\'';
 
 /* Ignorar comentarios, espaços em branco e fim de linha. */
 
-COM : '--'(~[\n]|[\r])+ -> skip; //Comentario
-WS : (' ' | [\t]) -> skip; // Espaço em branco
-EOL : ([\n] | [\r]) -> skip; // Fim de linha
+COM : '--' ~([\n]|[\r])+ -> skip; 				// Comentario
+WS : (' ' | [\t]) -> skip;						// Espaço em branco
+EOL : ([\n] | [\r]) -> skip;    				// Fim de linha
 
 /* Constantes numéricas apenas decimais, sem sinal, com dígitos
  * antes e depois do ponto decimal opcionais) */
-    
+
 DECIMAL : (Digito)+('.'(Digito)+)?;
 
 
@@ -67,135 +69,106 @@ DECIMAL : (Digito)+('.'(Digito)+)?;
 /* O conjunto inicial é o programa, que possui trechos. Trechos são basicamente blocos,
  * e blocos, por sua vez, são listas de comandos executados sequencialmente.  */
 
-listaExpressoes: expressao (',' expressao)*;
-
 programa : trecho;
 
-bloco: (comando)* (retorno)?;				// retorno é o último comando, que é aquele que retorna uma expressão
+bloco: (comando (';')?)*  (retorno (';')?)?;				// retorno é o último comando, que é aquele que retorna uma expressão
 
-retorno: RETURN (listaExpressoes)? (';')?;
+retorno: RETURN (listaExpressoes)? | 'break' ;
 
-trecho : bloco; 
-
-
-
-
-/* "var" identifica todas as possíveis variáveis presentes no programa. A regra "prefixoVar"
- * evita a recursividade da mesma */
-
-var: IDENTIFICADOR | IDENTIFICADOR varSufix;
-
-varSufix : '[' expressao ']' | '[' expressao ']' varSufix | '.' var;
-
-prefixoVar: var { TabelaDeSimbolos.adicionarSimbolo($var.text,Tipo.VARIAVEL); } | chamadaFuncao | '(' expressao ')';
-
+trecho : bloco;
 
 
 
 /* Todos os comandos possíveis de serem executados através da linguagem */
-comando: ';' |
-		var ATR listaExpressoes |   /*listaVariaveis*/
+
+comando:	listaVariaveis ATR listaExpressoes |
 		chamadaFuncao |
 		rotulo |
 		BREAK |
-		GOTO IDENTIFICADOR |
+		GOTO ID |
 		DO bloco END |
 		WHILE expressao DO bloco END |
 		REPEAT bloco UNTIL expressao |
 		IF expressao THEN bloco (ELSEIF expressao THEN bloco)* (ELSE bloco)? END |
-		FOR IDENTIFICADOR ATR expressao ',' expressao (',' expressao)* DO bloco END |
-		FOR listaIdentificadores IN listaExpressoes DO bloco END |
-		FUNCTION nomeFuncao corpoFuncao { TabelaDeSimbolos.adicionarSimbolo($nomeFuncao.text,Tipo.FUNCAO); }  |
-		LOCAL listaIdentificadores (ATR listaExpressoes)?;
+		FOR nomeId ATR expressao ',' expressao (',' expressao)? DO bloco END |
+		FOR listaIds IN listaExpressoes DO bloco END |
+		FUNCTION nomeFuncao corpoFuncao |
+		LOCAL FUNCTION ID corpoFuncao | LOCAL listaIds (ATR nomeId)?;
 
 
 /* O comando GOTO transfere o programa para um rótulo. Por razões sintáticas, rótulos em Lua são consideradas dessa maneira */
-rotulo: '::' IDENTIFICADOR '::';
+rotulo: '::' ID '::';
 
+/* nomeId é usado para uma chamada simples de função, ou seja, onde não há mais "nada" para o analisador ler
+ * É feita também a inserção do nome desta variável na tabela */
+nomeId : ID {TabelaDeSimbolos.adicionarSimbolo($ID.text,Tipo.VARIAVEL); };
 
 
 /* O nome de uma função é definida por identificadores (que são tokens) */
 
-listaIdentificadores: IDENTIFICADOR (',' IDENTIFICADOR)*;
+listaVariaveis : var (',' var)*;
 
-nomeFuncao: IDENTIFICADOR ('.' IDENTIFICADOR)* (':' IDENTIFICADOR)?; 
-
-
-
-/* Expressões definidas pela linguagem. "prefixoExpressao" previne que haja recursividade na regra */
-
-
-
-expressao: IDENTIFICADOR | NIL | FALSE | TRUE | DECIMAL | CADEIA | '...' | definicaoFuncao
-		   prefixoExpressao | construtorTabela | expressao opbinario expressao  |
-		   opunario expressao;
-
-//prefixoExpressao: var | chamadaFuncao | '(' expressao ')';
-
-prefixoExpressao : IDENTIFICADOR prefixoExpressao1 | IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.VARIAVEL);} |
-				   chamadaFuncao prefixoExpressao1 | chamadaFuncao | prefixoExpressao1
-				   '(' expressao ')' prefixoExpressao1 | '(' expressao ')';
+/* Existem o nomeFuncao e o nome para que seja possível a inserção na tabela
+ * nomeAux também existe para esse mesmo motivo, mas é aplicado apenas em listas de variaveis */
+nome : ID ('.' ID)* (':' ID)?;
+nomeAux : ID {TabelaDeSimbolos.adicionarSimbolo(($ID.text),Tipo.VARIAVEL); };
+nomeFuncao : nome {TabelaDeSimbolos.adicionarSimbolo(($nome.text),Tipo.FUNCAO); };
 
 
-prefixoExpressao1 :	'[' expressao ']' prefixoExpressao1 | '[' expressao ']' |
-					'.' IDENTIFICADOR prefixoExpressao1 | '.' IDENTIFICADOR;
+/* var foi dividido em duas partes para eliminar a recursão */
+var : prefixoExpressao varSufixo | nomeId;
+varSufixo : '(' expressao ')'? | '.'  ID;
 
+listaIds : nomeAux (',' nomeAux)*;
+listaExpressoes : (expressao ',')* expressao;
+
+/* Definição de operadores unários */
+opUnario: '-' | NOT | '#';
+
+/* Definição de operadores binários e suas precedências
+ * A escala adotada foi: opBin1 > opBin2 > opBin3 > opBin4 */
+
+expressao : expressao opBin4 expressao1 | expressao1;
+expressao1 : expressao1 opBin3 expressao2 | expressao2;
+expressao2 : expressao2 opBin2 expressao3 | expressao3;
+expressao3 : expressao3 opBin1 expressao4 | expressao4;
+expressao4 : NIL | NOT | FALSE | DECIMAL | CADEIA | '...' | definicaoFuncao | prefixoExpressao |
+			 construtorTabela | opUnario expressao;
+
+opBin1 : '<' | '<=' | '>' | '>=' | '==' | '~=' |  'and' | 'or';
+opBin2 : '^' | '%' | '..';
+opBin3 : '*' | '/' ;
+opBin4 : '+' | '-' ;
+
+
+/* Definição das chamadas compostas de função */
+funcaoComposta : ID varSufixo;
+
+/* O nome da função também pode fazer parte da expressão, por isso foram necessárias regras
+ * auxiliares a fim de evitar a recursão */
+prefixoExpressao : funcaoComposta  {TabelaDeSimbolos.adicionarSimbolo(($funcaoComposta.text),Tipo.FUNCAO); } |
+				   ID | prefixoExpressao funcaoAux | '(' expressao ')';
+
+chamadaFuncao : prefixoExpressao funcaoAux {TabelaDeSimbolos.adicionarSimbolo(($prefixoExpressao.text),Tipo.FUNCAO); } ;
 
 
 /* Maneira como as funções se comportam na linguagem, onde há o nome da função e seus argumentos.
  * Também é definido o corpo da função e seus parâmetros */
+funcaoAux : argumentos | ':' NOME argumentos;
+argumentos : '(' (listaExpressoes)? ')' | construtorTabela | CADEIA;
 
-//chamadaFuncao: var argumento | var ':' IDENTIFICADOR argumento;
+definicaoFuncao : FUNCTION corpoFuncao;
+corpoFuncao : '(' (listaParametros)? ')' bloco END;
 
-
-chamadaFuncao : IDENTIFICADOR prefixoExpressao1 argumento chamadaFuncao1 |
-                  IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento | IDENTIFICADOR prefixoExpressao1 argumento | IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento chamadaFuncao1 |
-                  '(' expressao ')'  prefixoExpressao1 argumento chamadaFuncao1 |
-                  '(' expressao ')'  argumento | '(' expressao ')'  prefixoExpressao1 argumento | '(' expressao ')'  argumento chamadaFuncao1 |
-                  IDENTIFICADOR prefixoExpressao1 ':' IDENTIFICADOR { TabelaDeSimbolos.adicionarSimbolo($IDENTIFICADOR.text,Tipo.FUNCAO);} argumento chamadaFuncao1 |
-                  IDENTIFICADOR ':' IDENTIFICADOR argumento | IDENTIFICADOR prefixoExpressao1 ':' IDENTIFICADOR argumento | IDENTIFICADOR ':' IDENTIFICADOR argumento chamadaFuncao1 |
-                  '(' expressao ')' prefixoExpressao1 ':' IDENTIFICADOR argumento chamadaFuncao1 |
-                  '(' expressao ')'  ':' IDENTIFICADOR argumento | '(' expressao ')' prefixoExpressao1 ':' IDENTIFICADOR argumento | '(' expressao ')' ':' IDENTIFICADOR argumento chamadaFuncao1;
-
-chamadaFuncao1 : prefixoExpressao1 argumento chamadaFuncao1 |
-                      argumento | prefixoExpressao1 argumento | argumento chamadaFuncao1 |
-                      prefixoExpressao1':' IDENTIFICADOR argumento chamadaFuncao1 |
-                      ':' IDENTIFICADOR argumento | prefixoExpressao1':' IDENTIFICADOR argumento | ':' IDENTIFICADOR argumento chamadaFuncao1;
-
-
-argumento: '(' (listaExpressoes)? ')' | construtorTabela | CADEIA;
-
-definicaoFuncao: FUNCTION corpoFuncao;
-
-corpoFuncao: IDENTIFICADOR '(' (listaParametros)? ')' bloco END;
-
-listaParametros: listaIdentificadores (',' '...')? | '...';
-
-
+listaParametros: listaIds (',' '...')? | '...';
 
 
 /* Construtores de tabelas são, como o nome diz, expressões que constroem tabelas. As tabelas
  * são compostas de campos. */
-
 construtorTabela: '{' (listaCampos)? '}';
 
 listaCampos: campo (separaCampos campo)* (separaCampos)?;
 
-campo: '[' expressao ']' ATR expressao | IDENTIFICADOR ATR expressao | expressao;
+campo: '[' expressao ']' ATR expressao | ID ATR expressao | expressao;
 
-separaCampos: ',' | ';';
-
-
-
-
-/* Operações binárias e unárias */
-
-opbinario: '+' | '-' | '*' | '/' | '^' | '%' | '..' | '<' |
-		   '<=' | '>' | '>=' | '==' | '~=' | AND | OR;	 
-
-
-opunario: '-' | NOT | '#';
-
-
-
-		
+separaCampos: SEPARACAMPOS;
